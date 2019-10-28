@@ -12,16 +12,16 @@ def main():
     while 1:
         with sr.Microphone(sample_rate=__sampleRate,chunk_size=__chunkSize) as src:
             print("Speek anything")
-            r.adjust_for_ambient_noise(src)
+            r.adjust_for_ambient_noise(src, duration=0.5)
             audio = r.listen(src)
             try:
                 text = r.recognize_google(audio)
                 print(text)
-                if(text=="Jarvis"):
+                if(text.lower()=="jarvis"):
                     engine.say("Hello Rushan")
                     print("Hello rushan")
                     engine.runAndWait()
-                if(text=="bye" or text=="bhai"):
+                if(text.lower()=="bye" or text=="bhai"):
                     engine.say("Good bye. Have a nice day")
                     print("Good bye. Have a nice day")
                     break
